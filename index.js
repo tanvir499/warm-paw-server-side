@@ -70,4 +70,24 @@ async function run() {
       res.send(result);
      })
 
-    
+     //update service
+     app.put('/update/:id', async(req,res)=>{
+       const data = req.body;
+       const id = req.params
+       const query = {_id: new ObjectId(id)}
+       
+       const updateServices = {
+         $set: data
+       }
+       const result = await petServices.updateOne(query, updateServices);
+       res.send(result);      
+     })
+
+     //delete service
+     app.delete('/delete/:id', async(req,res)=>{
+        const id = req.params
+        const query = {_id: new ObjectId(id)}
+        const result = await petServices.deleteOne(query);
+        res.send(result);
+     })
+      
