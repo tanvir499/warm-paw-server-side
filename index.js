@@ -51,4 +51,23 @@ async function run() {
       res.send(result);
     })
 
-   
+     app.get('/services/:id', async(req,res)=>{
+      const id = req.params
+      console.log(id);
+      
+      const query = {_id: new ObjectId(id)}
+      const result = await petServices.findOne(query);
+      res.send(result);
+
+     })
+     //for my services part
+     app.get('/my-services', async(req,res)=>{
+      const{email} = req.query;
+      const query = {
+        email: email
+      }; //filter by email
+      const result = await petServices.find(query).toArray();
+      res.send(result);
+     })
+
+    
