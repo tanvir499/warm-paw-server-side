@@ -90,4 +90,12 @@ async function run() {
         const result = await petServices.deleteOne(query);
         res.send(result);
      })
-      
+      //order collection api
+     app.post('/orders', async(req,res)=>{
+        const data = req.body
+        console.log(data);
+        const result = await orderCollections.insertOne(data);
+        res.status(201).send(result);
+     })
+     
+     
