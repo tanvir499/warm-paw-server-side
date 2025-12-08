@@ -39,4 +39,16 @@ async function run() {
       const result = await petServices.insertOne(data);
       res.send(result);
     })
-  
+    // get services from DB
+    app.get('/services', async(req, res)=>{
+      const {category} = req.query;
+      console.log(category);
+      const query = {}
+      if(category){
+        query.category = category;
+      }
+      const result = await petServices.find(query).toArray();
+      res.send(result);
+    })
+
+   
